@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const noteRouter = require("./routes/note.route");
 const userRouter = require("./routes/user.route");
+const seedRouter = require("./routes/seed.route");
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to notes app</h1>");
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/notes", noteRouter);
+app.use("/api/v1/seed", seedRouter);
 
 app.listen(PORT, () => {
   console.log(`App running on port: ${PORT}`);

@@ -14,7 +14,8 @@ const NoteSchema = new Schema(
     },
     user: {
       type: Schema.Types.ObjectId,
-      ref: "User"
+      ref: "User",
+      required: [true, "There must be a user"]
     },
     readCount: {
         type: Number,

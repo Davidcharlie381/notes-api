@@ -1,12 +1,16 @@
 const NoteController = require("../controllers/note.controller");
+const AuthMiddleware = require("../middleware/auth");
 const router = require("express").Router();
 
-router.get("/", NoteController.getNotes);
+router
+  .route("/")
+  .get(AuthMiddleware.isAuth, AuthMiddleware.isAdmin, NoteController.getNotes)
+  .post(AuthMiddleware.isAuth, NoteController.createNote)
+  .delete(AuthMiddleware.isAuth, AuthMiddleware.isAdmin, NoteController);
 
 router
   .route("/:id")
   .get(NoteController.getSingleNote)
-  .post(NoteController.createNote)
   .put(NoteController.updateNote)
   .delete(NoteController.deleteNote);
 
